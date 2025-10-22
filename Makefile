@@ -9,9 +9,8 @@ help:
 	@echo "  make up             - Start all services"
 	@echo "  make down           - Stop all services"
 	@echo "  make restart        - Restart all services"
-	@echo "  make logs           - View logs (all services)"
+	@echo "  make logs           - View logs"
 	@echo "  make logs-web       - View web service logs"
-	@echo "  make logs-db        - View database logs"
 	@echo "  make shell          - Open shell in web container"
 	@echo "  make test           - Run tests"
 	@echo "  make health         - Check service health"
@@ -41,8 +40,7 @@ logs:
 logs-web:
 	docker-compose logs -f web
 
-logs-db:
-	docker-compose logs -f db
+
 
 shell:
 	docker-compose exec web bash
