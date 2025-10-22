@@ -19,13 +19,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
+import os
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6h*%&)-mp-!b2oox%@3q0i$z4s+68%6bwf0h)_41j=+lm&18s3'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-6h*%&)-mp-!b2oox%@3q0i$z4s+68%6bwf0h)_41j=+lm&18s3')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', '1') == '1'
 
-ALLOWED_HOSTS = ["3559f12d6e93.ngrok-free.app","localhost","tgservice.sarafirasmi.co.uk"]
+# Allowed hosts - can be configured via environment variable
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+
+# CSRF Settings - can be configured via environment variable
+CSRF_TRUSTED_ORIGINS = os.getenv(
+    'CSRF_TRUSTED_ORIGINS',
+    'https://tgservice.sarafirasmi.co.uk,https://3559f12d6e93.ngrok-free.app'
+).split(',')
 
 
 # Application definition
