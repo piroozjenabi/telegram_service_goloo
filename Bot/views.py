@@ -224,13 +224,19 @@ def process_telegram_update_sync(bot: TelegramBot, update_data: dict):
         bot_user.save()
     
     # Determine message type
+    import logging
+    logger = logging.getLogger(__name__)
+    
     message_type = 'text'
     text = message.get('text', '')
     file_url = None
     
+    logger.info(f"Processing message: {message.keys()}")
+    
     if 'contact' in message:
         message_type = 'contact'
         contact = message['contact']
+        logger.info(f"Contact detected! Phone: {contact.get('phone_number')}")
     elif 'photo' in message:
         message_type = 'photo'
         file_url = message['photo'][-1].get('file_id') if message['photo'] else None
@@ -399,6 +405,32 @@ async def process_telegram_update(bot: TelegramBot, update_data: dict):
     else:
         # Handle regular message
         await bot_service.handle_message(message)
+
+
+# Health Check Endpoint
+@api.get("/health")
+def health_check(request):
+    """Health check endpoint for Docker and monitoring"""
+    from django.db import connection
+    
+    try:
+        # Check database connection
+        connection.ensure_connection()
+        
+        return {
+            "status": "healthy",
+            "database": "connected",
+            "service": "telegram-bot-service"
+        }
+    except Exception as e:
+        return api.create_response(
+            request,
+            {
+                "status": "unhealthy",
+                "error": str(e)
+            },
+            status=503
+        )
 
 
 # Statistics Endpoints

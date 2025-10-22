@@ -1,0 +1,75 @@
+name: Docker Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Create .env file
+      run: |
+        cp .env.example .env
+        echo "DATABASE_URL=postgresql://postgres:postgres@db:5432/telegram_bots" >> .env
+        echo "DJANGO_SECRET_KEY=test-secret-key-for-ci" >> .env
+        echo "BASE_URL=http://localhost:8000" >> .env
+    
+    - name: Build Docker images
+      run: docker-compose build
+    
+    - name: Start services
+      run: docker-compose up -d
+    
+    - name: Wait for services to be healthy
+      run: |
+        timeout 60 bash -c 'until docker-compose ps | grep -q "healthy"; do sleep 2; done'
+    
+    - name: Check service status
+      run: docker-compose ps
+    
+    - name: Test health endpoint
+      run: |
+        sleep 5
+        curl -f http://localhost:8000/api/health/ || exit 1
+    
+    - name: Run Django tests
+      run: docker-compose --profile test run --rm test
+    
+    - name: Show logs on failure
+      if: failure()
+      run: |
+        docker-compose logs web
+        docker-compose logs db
+    
+    - name: Stop services
+      if: always()
+      run: docker-compose down -v
+
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Build Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: false
+        tags: telegram-bot-service:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max

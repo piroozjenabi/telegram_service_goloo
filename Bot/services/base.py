@@ -50,7 +50,7 @@ class BaseBotService(ABC):
     
     async def handle_start(self, message_data: Dict[str, Any]) -> None:
         """Handle /start command"""
-        # If phone number is required, combine welcome message with phone request
+        # If phone number is required and not yet provided
         if self.bot.has_get_number and not self.bot_user.phone_number:
             # Combine welcome message with phone request in one message
             combined_message = ""
@@ -76,8 +76,15 @@ class BaseBotService(ABC):
             self.bot_user.user_state = 'awaiting_phone'
             self.bot_user.save(update_fields=['user_state'])
         else:
-            # Just send welcome message if phone not required or already provided
-            if self.bot.has_welcome_message and self.bot.welcome_message_text:
+            # Phone already provided or not required - show welcome or registered message
+            if self.bot_user.phone_number:
+                # User already registered
+                welcome_back = f"Welcome back! 👋\n\nYour phone: {self.bot_user.phone_number}"
+                await self.send_message(welcome_back)
+                self.bot_user.user_state = 'registered'
+                self.bot_user.save(update_fields=['user_state'])
+            elif self.bot.has_welcome_message and self.bot.welcome_message_text:
+                # Just send welcome message
                 await self.send_message(self.bot.welcome_message_text)
                 self.bot_user.user_state = 'welcomed'
                 self.bot_user.save(update_fields=['user_state'])
@@ -109,8 +116,12 @@ class BaseBotService(ABC):
     async def handle_contact(self, contact_data: Dict[str, Any]) -> None:
         """Handle contact (phone number) sharing"""
         from telegram import ReplyKeyboardRemove
+        import logging
+        logger = logging.getLogger(__name__)
         
+        logger.info(f"handle_contact called with: {contact_data}")
         phone_number = contact_data.get('phone_number')
+        logger.info(f"Extracted phone number: {phone_number}")
         
         if phone_number:
             self.bot_user.phone_number = phone_number

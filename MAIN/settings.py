@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6h*%&)-mp-!b2oox%@3q0i$z4s+68%6bwf0h)_41j=+lm&18s3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["3559f12d6e93.ngrok-free.app","localhost"]
+ALLOWED_HOSTS = ["3559f12d6e93.ngrok-free.app","localhost","tgservice.sarafirasmi.co.uk"]
 
 
 # Application definition
@@ -76,12 +76,23 @@ WSGI_APPLICATION = 'MAIN.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import dj_database_url
+
+# Default to SQLite for local development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Override with DATABASE_URL if provided (for Docker/Production)
+if os.getenv('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 
 
 # Password validation

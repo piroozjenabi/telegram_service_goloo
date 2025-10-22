@@ -19,11 +19,36 @@ High-performance Django-based platform for creating and managing multiple Telegr
 
 ## 🚀 Quick Start
 
+### Option 1: Docker (Recommended for Production)
+
+```bash
+# 1. Copy environment file
+cp .env.example .env
+
+# 2. Start services with Docker Compose
+make up
+
+# 3. Run migrations
+make migrate
+
+# 4. Create admin user
+make createsuperuser
+
+# 5. Access the application
+# Web: http://localhost:8000
+# Admin: http://localhost:8000/admin
+# Health: http://localhost:8000/api/health/
+```
+
+See [DOCKER_GUIDE.md](DOCKER_GUIDE.md) for detailed Docker documentation.
+
+### Option 2: Local Development
+
 ```bash
 # 1. Activate virtual environment
 source .venv/bin/activate
 
-# 2. Run migrations (already done)
+# 2. Run migrations
 python manage.py migrate
 
 # 3. Create admin user
@@ -67,8 +92,30 @@ GET    /api/bots/{id}/stats         - Get statistics
 POST   /api/webhook/{bot_id}        - Webhook handler (Telegram)
 ```
 
+## 🐳 Docker Support
+
+Full Docker support with health checks, PostgreSQL, and automated testing:
+
+- **Dockerfile**: Production-ready Python 3.13 image with health checks
+- **docker-compose.yml**: Multi-service setup (web + PostgreSQL)
+- **Health Checks**: Automatic monitoring of service and database health
+- **Test Profile**: Isolated test environment with `docker-compose --profile test`
+- **Makefile**: Convenient commands for common Docker operations
+
+Quick commands:
+```bash
+make up          # Start services
+make test        # Run tests
+make health      # Check health
+make logs        # View logs
+make down        # Stop services
+```
+
+See [DOCKER_GUIDE.md](DOCKER_GUIDE.md) for complete Docker documentation.
+
 ## 📖 Documentation
 
+- **[DOCKER_GUIDE.md](DOCKER_GUIDE.md)**: Complete Docker deployment guide
 - **[QUICKSTART.md](QUICKSTART.md)**: Step-by-step setup guide
 - **[AUTO_WEBHOOK_SETUP.md](AUTO_WEBHOOK_SETUP.md)**: Automatic webhook configuration
 - **[ADMIN_WEBHOOK_ACTIONS.md](ADMIN_WEBHOOK_ACTIONS.md)**: Admin webhook management actions
