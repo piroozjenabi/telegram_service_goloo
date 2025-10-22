@@ -1,0 +1,270 @@
+INFO 2025-10-22 22:13:54,339 signals Auto webhook setup disabled for bot: sub
+ERROR 2025-10-22 22:13:54,340 signals Failed to fetch username for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+INFO 2025-10-22 22:14:01,814 signals Webhook not set for bot: sub (6686a759-94ed-4b01-add9-7dd9dfe3fd24)
+ERROR 2025-10-22 22:14:01,814 signals Failed to setup webhook for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+ERROR 2025-10-22 22:14:01,815 signals Failed to fetch username for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+INFO 2025-10-22 22:17:00,636 signals Auto webhook setup disabled for bot: sub
+ERROR 2025-10-22 22:17:00,637 signals Failed to fetch username for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+INFO 2025-10-22 22:17:07,389 signals Webhook not set for bot: sub (6686a759-94ed-4b01-add9-7dd9dfe3fd24)
+ERROR 2025-10-22 22:17:07,391 signals Failed to setup webhook for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+ERROR 2025-10-22 22:17:07,392 signals Failed to fetch username for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+INFO 2025-10-22 22:23:32,933 signals Webhook not set for bot: sub (6686a759-94ed-4b01-add9-7dd9dfe3fd24)
+ERROR 2025-10-22 22:23:32,934 signals Failed to setup webhook for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+ERROR 2025-10-22 22:23:32,935 signals Failed to fetch username for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+INFO 2025-10-22 22:23:46,043 signals Webhook not set for bot: sub (6686a759-94ed-4b01-add9-7dd9dfe3fd24)
+ERROR 2025-10-22 22:23:46,043 signals Failed to setup webhook for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+ERROR 2025-10-22 22:23:46,044 signals Failed to fetch username for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+INFO 2025-10-22 22:24:11,476 signals Webhook not set for bot: sub (6686a759-94ed-4b01-add9-7dd9dfe3fd24)
+ERROR 2025-10-22 22:24:11,478 signals Failed to setup webhook for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+INFO 2025-10-22 22:24:13,972 signals Webhook not set for bot: sub (6686a759-94ed-4b01-add9-7dd9dfe3fd24)
+ERROR 2025-10-22 22:24:13,974 signals Failed to setup webhook for sub: Unknown scheme for proxy URL URL('socks://127.0.0.1:12334/')
+INFO 2025-10-22 23:00:51,090 views Received webhook update for bot sub: {'update_id': 328982763, 'message': {'message_id': 12, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761173564, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+ERROR 2025-10-22 23:00:52,651 views Webhook error for bot_id 6686a759-94ed-4b01-add9-7dd9dfe3fd24: You cannot call this from an async context - use a thread or sync_to_async.
+Traceback (most recent call last):
+  File "/home/pirooz/web/services/telegram_service /Bot/views.py", line 174, in webhook_handler
+    asyncio.run(process_telegram_update(bot, update_data))
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/pirooz/web/services/telegram_service /Bot/views.py", line 289, in process_telegram_update
+    await bot_service.handle_message(message)
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 36, in handle_message
+    await self.handle_command(text, message_data)
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 45, in handle_command
+    await self.handle_start(message_data)
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 57, in handle_start
+    self.bot_user.save(update_fields=['user_state'])
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1621, in execute_sql
+    cursor = self.connection.cursor()
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/utils/asyncio.py", line 24, in inner
+    raise SynchronousOnlyOperation(message)
+django.core.exceptions.SynchronousOnlyOperation: You cannot call this from an async context - use a thread or sync_to_async.
+INFO 2025-10-22 23:01:58,230 views Received webhook update for bot sub: {'update_id': 328982763, 'message': {'message_id': 12, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761173564, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+ERROR 2025-10-22 23:01:59,885 views Webhook error for bot_id 6686a759-94ed-4b01-add9-7dd9dfe3fd24: You cannot call this from an async context - use a thread or sync_to_async.
+Traceback (most recent call last):
+  File "/home/pirooz/web/services/telegram_service /Bot/views.py", line 174, in webhook_handler
+    asyncio.run(process_telegram_update(bot, update_data))
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/pirooz/web/services/telegram_service /Bot/views.py", line 289, in process_telegram_update
+    await bot_service.handle_message(message)
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 36, in handle_message
+    await self.handle_command(text, message_data)
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 45, in handle_command
+    await self.handle_start(message_data)
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 57, in handle_start
+    self.bot_user.save(update_fields=['user_state'])
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1621, in execute_sql
+    cursor = self.connection.cursor()
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/utils/asyncio.py", line 24, in inner
+    raise SynchronousOnlyOperation(message)
+django.core.exceptions.SynchronousOnlyOperation: You cannot call this from an async context - use a thread or sync_to_async.
+INFO 2025-10-22 23:03:44,850 views Received webhook update for bot sub: {'update_id': 328982763, 'message': {'message_id': 12, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761173564, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+ERROR 2025-10-22 23:03:47,007 views Webhook error for bot_id 6686a759-94ed-4b01-add9-7dd9dfe3fd24: You cannot call this from an async context - use a thread or sync_to_async.
+Traceback (most recent call last):
+  File "/home/pirooz/web/services/telegram_service /Bot/views.py", line 174, in webhook_handler
+    process_telegram_update_sync(bot, update_data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /Bot/views.py", line 271, in process_telegram_update_sync
+    asyncio.run(bot_service.handle_message(message))
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 36, in handle_message
+    await self.handle_command(text, message_data)
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 45, in handle_command
+    await self.handle_start(message_data)
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 57, in handle_start
+    self.bot_user.save(update_fields=['user_state'])
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1621, in execute_sql
+    cursor = self.connection.cursor()
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/utils/asyncio.py", line 24, in inner
+    raise SynchronousOnlyOperation(message)
+django.core.exceptions.SynchronousOnlyOperation: You cannot call this from an async context - use a thread or sync_to_async.
+INFO 2025-10-22 23:04:50,575 views Received webhook update for bot sub: {'update_id': 328982763, 'message': {'message_id': 12, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761173564, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+ERROR 2025-10-22 23:04:52,116 views Webhook error for bot_id 6686a759-94ed-4b01-add9-7dd9dfe3fd24: You cannot call this from an async context - use a thread or sync_to_async.
+Traceback (most recent call last):
+  File "/home/pirooz/web/services/telegram_service /Bot/views.py", line 174, in webhook_handler
+    process_telegram_update_sync(bot, update_data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /Bot/views.py", line 271, in process_telegram_update_sync
+    asyncio.run(bot_service.handle_message(message))
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/pirooz/.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 36, in handle_message
+    await self.handle_command(text, message_data)
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 45, in handle_command
+    await self.handle_start(message_data)
+  File "/home/pirooz/web/services/telegram_service /Bot/services/base.py", line 57, in handle_start
+    self.bot_user.save(update_fields=['user_state'])
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1621, in execute_sql
+    cursor = self.connection.cursor()
+  File "/home/pirooz/web/services/telegram_service /.venv/lib/python3.13/site-packages/django/utils/asyncio.py", line 24, in inner
+    raise SynchronousOnlyOperation(message)
+django.core.exceptions.SynchronousOnlyOperation: You cannot call this from an async context - use a thread or sync_to_async.
+INFO 2025-10-22 23:06:52,501 views Received webhook update for bot sub: {'update_id': 328982763, 'message': {'message_id': 12, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761173564, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:06:54,666 views Received webhook update for bot sub: {'update_id': 328982764, 'message': {'message_id': 13, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761173606, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:06:56,933 views Received webhook update for bot sub: {'update_id': 328982765, 'message': {'message_id': 14, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761173880, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:06:58,803 views Received webhook update for bot sub: {'update_id': 328982766, 'message': {'message_id': 15, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761173933, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:07:00,721 views Received webhook update for bot sub: {'update_id': 328982767, 'message': {'message_id': 17, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174034, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:07:02,975 views Received webhook update for bot sub: {'update_id': 328982768, 'message': {'message_id': 19, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174108, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:07:04,744 views Received webhook update for bot sub: {'update_id': 328982769, 'message': {'message_id': 21, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174142, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:07:07,480 views Received webhook update for bot sub: {'update_id': 328982770, 'message': {'message_id': 22, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174175, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:07:10,105 views Received webhook update for bot sub: {'update_id': 328982771, 'message': {'message_id': 23, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174194, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:07:12,018 views Received webhook update for bot sub: {'update_id': 328982772, 'message': {'message_id': 25, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174284, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:07:13,999 views Received webhook update for bot sub: {'update_id': 328982773, 'message': {'message_id': 27, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174402, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:07:30,790 views Received webhook update for bot sub: {'update_id': 328982774, 'message': {'message_id': 39, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174450, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:08:55,906 views Received webhook update for bot sub: {'update_id': 328982775, 'message': {'message_id': 41, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174535, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:09:18,734 views Received webhook update for bot sub: {'update_id': 328982776, 'message': {'message_id': 44, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174558, 'reply_to_message': {'message_id': 43, 'from': {'id': 7988456020, 'is_bot': True, 'first_name': 'Subuniversity', 'username': 'subuniversitybot'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174537, 'text': 'Please share your phone number to continue.'}, 'contact': {'phone_number': '989130878009', 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'user_id': 101135063}}}
+INFO 2025-10-22 23:10:57,904 views Received webhook update for bot sub: {'update_id': 328982777, 'message': {'message_id': 46, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174657, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:11:06,829 views Received webhook update for bot sub: {'update_id': 328982778, 'message': {'message_id': 49, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174666, 'reply_to_message': {'message_id': 48, 'from': {'id': 7988456020, 'is_bot': True, 'first_name': 'Subuniversity', 'username': 'subuniversitybot'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174659, 'text': 'برای ادامه کار لطفا شماره خود را به ما به اشتراک بگزارید'}, 'contact': {'phone_number': '989130878009', 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'user_id': 101135063}}}
+INFO 2025-10-22 23:16:13,297 views Received webhook update for bot sub: {'update_id': 328982779, 'message': {'message_id': 51, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174972, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:16:21,729 views Received webhook update for bot sub: {'update_id': 328982780, 'message': {'message_id': 54, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174981, 'reply_to_message': {'message_id': 53, 'from': {'id': 7988456020, 'is_bot': True, 'first_name': 'Subuniversity', 'username': 'subuniversitybot'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174975, 'text': 'برای ادامه کار لطفا شماره خود را به ما به اشتراک بگزارید'}, 'contact': {'phone_number': '+989130878009', 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'user_id': 101135063}}}
+INFO 2025-10-22 23:16:27,248 views Received webhook update for bot sub: {'update_id': 328982781, 'message': {'message_id': 56, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174986, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}
+INFO 2025-10-22 23:16:43,606 views Received webhook update for bot sub: {'update_id': 328982782, 'message': {'message_id': 59, 'from': {'id': 101135063, 'is_bot': False, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'language_code': 'en'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761175003, 'reply_to_message': {'message_id': 58, 'from': {'id': 7988456020, 'is_bot': True, 'first_name': 'Subuniversity', 'username': 'subuniversitybot'}, 'chat': {'id': 101135063, 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'username': 'Pieroir', 'type': 'private'}, 'date': 1761174988, 'text': 'برای ادامه کار لطفا شماره خود را به ما به اشتراک بگزارید'}, 'contact': {'phone_number': '+989130878009', 'first_name': 'Pirooz', 'last_name': 'Senior Software Engineer', 'user_id': 101135063}}}

@@ -1,0 +1,74 @@
+{
+  "simple_welcome_flow": {
+    "name": "Welcome Flow",
+    "description": "Simple welcome message flow",
+    "trigger_command": "/start",
+    "flow_data": {
+      "response": "Welcome to our bot! 🎉\n\nI'm here to help you. Use /help to see available commands."
+    }
+  },
+  "help_flow": {
+    "name": "Help Flow",
+    "description": "Show help information",
+    "trigger_command": "/help",
+    "flow_data": {
+      "response": "Available commands:\n/start - Start the bot\n/help - Show this help message\n/info - Get bot information"
+    }
+  },
+  "advanced_flow_example": {
+    "name": "Advanced Flow Example",
+    "description": "Example of a more complex flow structure",
+    "trigger_command": "/register",
+    "flow_data": {
+      "steps": [
+        {
+          "id": "step1",
+          "type": "message",
+          "text": "Let's get you registered! What's your name?",
+          "next": "step2"
+        },
+        {
+          "id": "step2",
+          "type": "question",
+          "text": "Great! Now, what's your email?",
+          "save_to": "email",
+          "validation": "email",
+          "next": "step3"
+        },
+        {
+          "id": "step3",
+          "type": "message",
+          "text": "Thank you for registering! We'll be in touch soon.",
+          "next": null
+        }
+      ],
+      "initial_step": "step1"
+    }
+  },
+  "menu_flow_example": {
+    "name": "Menu Flow Example",
+    "description": "Example with inline keyboard menu",
+    "trigger_command": "/menu",
+    "flow_data": {
+      "type": "menu",
+      "text": "Please select an option:",
+      "buttons": [
+        {
+          "text": "Option 1",
+          "callback_data": "option_1",
+          "response": "You selected Option 1"
+        },
+        {
+          "text": "Option 2",
+          "callback_data": "option_2",
+          "response": "You selected Option 2"
+        },
+        {
+          "text": "Option 3",
+          "callback_data": "option_3",
+          "response": "You selected Option 3"
+        }
+      ]
+    }
+  }
+}
