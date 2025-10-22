@@ -50,7 +50,7 @@ test:
 
 health:
 	@echo "Checking service health..."
-	@curl -s http://localhost:8000/api/health/ | python3 -m json.tool || echo "Service not responding"
+	@curl -s http://localhost:7004/api/health/ | python3 -m json.tool || echo "Service not responding"
 
 migrate:
 	docker-compose exec web python manage.py migrate

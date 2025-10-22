@@ -20,9 +20,8 @@ jobs:
     - name: Create .env file
       run: |
         cp .env.example .env
-        echo "DATABASE_URL=postgresql://postgres:postgres@db:5432/telegram_bots" >> .env
         echo "DJANGO_SECRET_KEY=test-secret-key-for-ci" >> .env
-        echo "BASE_URL=http://localhost:8000" >> .env
+        echo "BASE_URL=http://localhost:7004" >> .env
     
     - name: Build Docker images
       run: docker-compose build
@@ -40,16 +39,14 @@ jobs:
     - name: Test health endpoint
       run: |
         sleep 5
-        curl -f http://localhost:8000/api/health/ || exit 1
+        curl -f http://localhost:7004/api/health/ || exit 1
     
     - name: Run Django tests
       run: docker-compose --profile test run --rm test
     
     - name: Show logs on failure
       if: failure()
-      run: |
-        docker-compose logs web
-        docker-compose logs db
+      run: docker-compose logs web
     
     - name: Stop services
       if: always()

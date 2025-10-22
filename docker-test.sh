@@ -72,7 +72,7 @@ echo ""
 # Test health endpoint
 echo "7. Testing health endpoint..."
 sleep 5  # Give the service a moment to fully start
-HEALTH_RESPONSE=$(curl -s http://localhost:8000/api/health/ || echo "failed")
+HEALTH_RESPONSE=$(curl -s http://localhost:7004/api/health/ || echo "failed")
 
 if echo "$HEALTH_RESPONSE" | grep -q "healthy"; then
     echo -e "${GREEN}✓ Health check passed${NC}"
@@ -105,10 +105,10 @@ echo "============================"
 echo "🎉 Docker setup test complete!"
 echo ""
 echo "Services running:"
-echo "  - Web: http://localhost:8000"
-echo "  - Admin: http://localhost:8000/admin"
-echo "  - API: http://localhost:8000/api"
-echo "  - Health: http://localhost:8000/api/health/"
+echo "  - Web: http://localhost:7004"
+echo "  - Admin: http://localhost:7004/admin"
+echo "  - API: http://localhost:7004/api"
+echo "  - Health: http://localhost:7004/api/health/"
 echo ""
 echo "Useful commands:"
 echo "  - View logs: docker-compose logs -f"
