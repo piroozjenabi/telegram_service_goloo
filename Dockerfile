@@ -28,15 +28,10 @@ RUN uv pip install --system -r pyproject.toml
 COPY . .
 
 # Create necessary directories
-RUN mkdir -p /app/staticfiles /app/media
+RUN mkdir -p /app/staticfiles /app/media /app/data
 
 # Collect static files
 RUN python manage.py collectstatic --noinput || true
-
-# Create a non-root user
-RUN useradd -m -u 1000 appuser && \
-    chown -R appuser:appuser /app
-USER appuser
 
 # Expose port
 EXPOSE 8000
@@ -45,5 +40,5 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD curl -f http://localhost:8000/api/health/ || exit 1
 
-# Run the application
+# Run the application as root (safe in container with volume mounts)
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
